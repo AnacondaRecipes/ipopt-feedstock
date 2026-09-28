@@ -13,12 +13,13 @@ source:
       - pkg-config-do-not-add-requires-private.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('ipopt', max_pin='x.x') }}
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('fortran') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
@@ -26,8 +27,6 @@ requirements:
     - make  # [not win]
     - wget  # [not win]
     - pkgconfig
-    - m2-patch  # [win]
-    - patch     # [not win]
   host:
     - libblas
     - liblapack
